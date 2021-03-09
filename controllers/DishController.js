@@ -47,7 +47,7 @@ class Controller {
     Dish.update({ name }, { where: { [Op.and]: [{VendorId}, {id: DishId}] } })
     .then(data => {
       if (!data) {
-        throw new Error({message: 'No Data!', status: 404})
+        throw {message: 'No Data!', status: 404}
       }
       res.status(200).json({message: 'update data success!'})
     })
@@ -61,7 +61,7 @@ class Controller {
     Dish.destroy({ where: { [Op.and]: [{ VendorId }, { id: DishId }] } })
     .then(data => {
       if (!data) {
-        throw new Error({message: 'No Data!', status: 404})
+        throw {message: 'No Data!', status: 404}
       }
       res.status(200).json({message: 'delete data success!'})
     })

@@ -18,7 +18,7 @@ class Controller {
     Order.findByPk(id)
     .then(data => {
       if (!data) {
-        throw new Error({message: 'No Data!', status: 404})
+        throw {message: 'No Data!', status: 404}
       }
       res.status(200).json(data)
     })
@@ -50,7 +50,7 @@ class Controller {
     Order.update(updateOrder, { where: {id} })
     .then(data => {
       if (!data) {
-        throw new Error({message: 'No Data!', status: 404})
+        throw {message: 'No Data!', status: 404}
       }
       res.status(200).json({message: 'update data success', data})
     })
@@ -64,7 +64,7 @@ class Controller {
     Order.destroy({ where: { id } })
     .then(data => {
       if (!data) {
-        throw new Error({message: 'No Data!', status: 404})
+        throw {message: 'No Data!', status: 404}
       }
       res.status(200).json({message: 'delete order success'})
     })

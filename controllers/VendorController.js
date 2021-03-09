@@ -20,7 +20,7 @@ class Controller {
     Vendor.findByPk(req.params.VendorId)
     .then(data => {
       if (!data) {
-        throw new Error({message: 'No Data!', status: 404})
+        throw {message: 'No Data!', status: 404}
       }
       res.status(200).json(data)
     })
@@ -52,7 +52,7 @@ class Controller {
     })
     .then(data => {
       if (!data[0]) {
-        throw new Error({message: 'No Data!', status: 404})
+        throw {message: 'No Data!', status: 404}
       }
       res.status(200).json({message: 'update data success', data})
     })
@@ -66,7 +66,7 @@ class Controller {
     Vendor.destroy({ where: { id: VendorId } })
     .then(data => {
       if(!data) {
-        throw new Error({message: 'No Data!', status: 404})
+        throw {message: 'No Data!', status: 404}
       }
       res.status(200).json({message: 'delete vendor success'})
     })
