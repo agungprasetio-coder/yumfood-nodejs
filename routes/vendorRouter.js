@@ -3,11 +3,11 @@ const dishRouter = require('./dishRouter')
 const VendorController = require('../controllers/VendorController')
 
 router.get('/', VendorController.index)
-router.get('/:id', VendorController.show)
+router.get('/:VendorId', VendorController.show)
 router.post('/', VendorController.store)
-router.put('/:id', VendorController.update)
-router.delete('/:id', VendorController.destroy)
+router.put('/:VendorId', VendorController.update)
+router.delete('/:VendorId', VendorController.destroy)
 
-router.use('/:id', dishRouter)
+router.use('/:VendorId', dishRouter)
 
 module.exports = router
