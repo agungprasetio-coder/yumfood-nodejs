@@ -17,7 +17,7 @@ class Controller {
   }
 
   static show (req, res, next) {
-    Vendor.findByPk(req.params.id)
+    Vendor.findByPk(req.params.VendorId)
     .then(data => {
       if (!data) {
         throw new Error({message: 'No Data!', status: 404})
@@ -35,7 +35,7 @@ class Controller {
       name, logo
     })
     .then(data => {
-      res.status(201).json(data)
+      res.status(201).json({message: 'add vendor success', data})
     })
     .catch(err => {
       next(err)
@@ -44,17 +44,17 @@ class Controller {
 
   static update (req, res, next) {
     const { name, logo } = req.body
-    const { id } = req.params
+    const { VendorId } = req.params
     Vendor.update({
       name, logo
     }, {
-      where: {id}, returning: true
+      where: {id: VendorId}, returning: true
     })
     .then(data => {
       if (!data[0]) {
         throw new Error({message: 'No Data!', status: 404})
       }
-      res.status(200).json(data)
+      res.status(200).json({message: 'update data success', data})
     })
     .catch(err => {
       next(err)
@@ -62,13 +62,13 @@ class Controller {
   }
   
   static destroy (req, res, next) {
-    const { id } = req.params
-    Vendor.destroy({ where: { id } })
+    const { VendorId } = req.params
+    Vendor.destroy({ where: { id: VendorId } })
     .then(data => {
       if(!data) {
         throw new Error({message: 'No Data!', status: 404})
       }
-      res.status(200).json(data)
+      res.status(200).json({message: 'delete vendor success'})
     })
     .catch(err => {
       next(err)
